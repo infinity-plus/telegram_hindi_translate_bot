@@ -1,0 +1,33 @@
+{
+    "name": "Telegram Hindi Translator Bot",
+    "description": "A heroku deployable telegram bot in python to translate from english to hindi bot.",
+    "repository": "https://github.com/infinity-plus/telegram_hindi_translate_bot",
+    "logo": "",
+    "keywords": [
+        "python",
+        "ptb",
+        "telegram",
+        "python-telegram-bot"
+    ],
+    "image": "heroku/python",
+    "formation": {
+        "web": {
+            "quantity": 1,
+            "size": "free"
+        }
+    },
+    "addons": [{
+        "plan": "heroku-postgresql"
+    }],
+    "env": {
+        "TOKEN": {
+            "description": "Bot API Key from BotFather https://t.me/BotFather"
+        },
+        "HEROKU": {
+            "description": "Heroku app name."
+        },
+        "PORT": {
+            "description": "PORT"
+        }
+    }
+}
