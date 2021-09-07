@@ -21,13 +21,12 @@
     }],
     "env": {
         "TOKEN": {
-            "description": "Bot API Key from BotFather https://t.me/BotFather"
+            "description": "Bot API Key from BotFather https://t.me/BotFather",
+            "required": true
         },
         "HEROKU": {
-            "description": "Heroku app name."
-        },
-        "PORT": {
-            "description": "PORT"
+            "description": "Heroku app name.",
+            "required": true
         }
     }
 }
