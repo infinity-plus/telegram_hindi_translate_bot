@@ -1,5 +1,4 @@
 import threading
-from typing import final
 
 from translator_bot.sql import BASE, SESSION
 from sqlalchemy import Column, BigInteger, UnicodeText
