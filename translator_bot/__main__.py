@@ -62,13 +62,13 @@ def main():
     updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(
-        CallbackQueryHandler(translate_callback, pattern='^[0-9]+'))
-    dispatcher.add_handler(
         MessageHandler(Filters.text & ~Filters.update.edited_message,
                        translate_it))
     dispatcher.add_handler(
         CommandHandler('start', translated_message,
                        Filters.regex(pattern='^[0-9]+')))
+    dispatcher.add_handler(
+        CallbackQueryHandler(translate_callback, pattern='^[0-9]+'))
     dispatcher.add_handler(CommandHandler('start', start))
 
     updater.start_webhook(listen='0.0.0.0',
