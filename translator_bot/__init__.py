@@ -14,6 +14,7 @@ TOKEN: str = environ.get("TOKEN", "None")
 HEROKU: str = environ.get("HEROKU", "None")
 if HEROKU != "None":
     HEROKU = f"https://{HEROKU}.herokuapp.com/"
+    LOGGER.debug(f"HEROKU: {HEROKU}")
 PORT: int = int(environ.get('PORT', 5000))
 DB_URI: str = environ.get("DATABASE_URL", "None")
 if DB_URI.startswith("postgres://"):
