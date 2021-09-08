@@ -10,7 +10,7 @@ class Translate(BASE):
     translated_text = Column(UnicodeText, nullable=False)
 
     def __init__(self, id: int, translated_text: str) -> None:
-        self.id = id
+        self.id = str(id)
         self.translated_text = translated_text
 
     def __repr__(self) -> str:
@@ -23,7 +23,7 @@ INSERTION_LOCK = threading.RLock()
 
 def get_translation(id: int) -> str:
     try:
-        result = SESSION.query(Translate).get(id)
+        result = SESSION.query(Translate).get(str(id))
     finally:
         SESSION.close()
     return result.translated_text if result else "Translation not found :("
@@ -32,7 +32,7 @@ def get_translation(id: int) -> str:
 def save_translation(id: int, translated_text: str) -> None:
     with INSERTION_LOCK:
         try:
-            translation = SESSION.query(Translate).get(id)
+            translation = SESSION.query(Translate).get(str(id))
             if not translation:
                 translation = Translate(id, translated_text)
                 SESSION.add(translation)
