@@ -76,6 +76,7 @@ def main():
                           port=PORT,
                           url_path=TOKEN,
                           webhook_url=HEROKU + TOKEN)
+    LOGGER.debug(updater.bot.get_webhook_info())
 
 
 if __name__ == '__main__':
