@@ -33,7 +33,7 @@ def translate_it(update: Update, context: CallbackContext):
     params = {'source': source_lang, 'target': to_lang, 'q': text}
     r = requests.post(base_url + 'translate', params=params)
     result = r.json()
-    translated = result['text']
+    translated = result['translatedText']
     uid = uuid.uuid4().int
     save_translation(uid, translated)
     keyboard = [[
