@@ -37,17 +37,13 @@ def translate_it(update: Update, context: CallbackContext):
     uid = uuid.uuid4().int
     save_translation(uid, translated)
     keyboard = [[
-        InlineKeyboardButton("Translate to Hindi!", callback_data=uid)
+        InlineKeyboardButton("Translate to Hindi!",
+                             url=create_deep_linked_url(
+                                 context.bot.username, str(uid)))
     ]]
     context.bot.send_message(chat_id=update.effective_chat.id,
                              text=text,
                              reply_markup=InlineKeyboardMarkup(keyboard))
-
-
-def translate_callback(update: Update, context: CallbackContext):
-    payload = update.callback_query.data
-    url = create_deep_linked_url(context.bot.username, payload)
-    update.callback_query.answer(url=url)
 
 
 def translated_message(update: Update, context: CallbackContext):
@@ -68,8 +64,6 @@ def main():
     dispatcher.add_handler(
         CommandHandler('start', translated_message,
                        Filters.regex(pattern='^[0-9]+')))
-    dispatcher.add_handler(
-        CallbackQueryHandler(translate_callback, pattern='^[0-9]+'))
     dispatcher.add_handler(CommandHandler('start', start))
 
     updater.start_webhook(listen='0.0.0.0',
