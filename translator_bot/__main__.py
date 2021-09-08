@@ -62,8 +62,9 @@ def main():
     updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(
-        MessageHandler(Filters.text & ~Filters.update.edited_message,
-                       translate_it))
+        MessageHandler(
+            Filters.text & ~Filters.update.edited_message & ~Filters.command,
+            translate_it))
     dispatcher.add_handler(
         CommandHandler('start', translated_message,
                        Filters.regex(pattern='^[0-9]+')))
