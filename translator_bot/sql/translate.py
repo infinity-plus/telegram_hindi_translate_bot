@@ -1,12 +1,12 @@
 import threading
 
 from translator_bot.sql import BASE, SESSION
-from sqlalchemy import Column, BigInteger, UnicodeText
+from sqlalchemy import Column, String, UnicodeText
 
 
 class Translate(BASE):
     __tablename__ = "translate"
-    id = Column(BigInteger, primary_key=True)
+    id = Column(String, primary_key=True)
     translated_text = Column(UnicodeText, nullable=False)
 
     def __init__(self, id: int, translated_text: str) -> None:
